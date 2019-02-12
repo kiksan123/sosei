@@ -34,8 +34,10 @@ class DfStandscaler():
     def __init__(self,df):
         self.df = df
         self.df_scaled = None
-
+        self.scaler = None
     def fit_transform(self):
-        scaler = StandardScaler()
-        self.df_scaled = pd.DataFrame(scaler.fit_transform(self.df), columns=self.df.columns)
-
+        self.scaler = StandardScaler()
+        self.df_scaled = pd.DataFrame(self.scaler.fit_transform(self.df), columns=self.df.columns)
+    def inverse_transform(self,X):
+        # Todo:dfに対応
+        return self.scaler.inverse_transform(X)

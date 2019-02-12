@@ -2,7 +2,7 @@
 
 import pandas as pd
 from sklearn import linear_model
-from sosei import Sosei
+from sosei import Sosei,DfStandscaler
 
 
 
@@ -20,9 +20,13 @@ def read_data():
 if __name__=="__main__":
     
     x_df, y_df = read_data()
-
+    """
     clf = linear_model.LinearRegression(fit_intercept=True, normalize=False,copy_X=True, n_jobs=1)
     C = Sosei(clf,x_df,y_df)
     C.make_coef_df()
-    C.save_csv("test.csv",tenchi=True)
-
+    print(C.mae())
+    #C.save_csv("test.csv",tenchi=True)
+    """
+    D = DfStandscaler(x_df)
+    D.fit_transform()
+    print(D.df_scaled)
